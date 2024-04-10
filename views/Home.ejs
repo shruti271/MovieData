@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>All Movies</h1>
-    
-</body>
+    <table>
+      <tr>
+        <% data.forEach(function(item) { %>
+        <td><%= item.title %></td>
+        <td><%= item.plot %></td>
+        <td><%= item.genres.join(", ")  %></td>
+        <% }); %>
+      </tr>
+    </table>
+  </body>
 </html>
