@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Login</title>
+</head>
+
+<body>
+
+  <h5><%= (errorMsg) ? errorMsg : "Please login below" %></h5>
+<%= errors %>
+  <form method="post" action="/api/users/login">
+    <label>email</label> <input name="email" type="text">
+    <label>Password</label> <input name="password" type="password">
+    <br><br><button type="submit">Login</button>
+  </form>
+</body>
+
+</html>

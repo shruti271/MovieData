@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Movie Form</title>
+</head>
+<body>
+  <h2>Add New Movie</h2>
+  <form action="/api/Movies" method="POST">
+    <label for="title">Title:</label><br>
+    <input type="text" id="title" name="title" required><br>
+
+    <label for="plot">Plot:</label><br>
+    <textarea id="plot" name="plot" rows="4" cols="50"></textarea><br>
+
+    <label for="genres">Genres (comma-separated for mulmiltple value):</label><br>
+    <input type="text" id="genres" name="genres"><br>
+
+    <label for="runtime">Runtime (in minutes):</label><br>
+    <input type="number" id="runtime" name="runtime"><br>
+
+    <label for="cast">Cast (comma-separated for mulmiltple value):</label><br>
+    <input type="text" id="cast" name="cast"><br>
+
+    <label for="num_mflix_comments">Number of Comments:</label><br>
+    <input type="number" id="num_mflix_comments" name="num_mflix_comments"><br>
+
+    <label for="countries">Countries (comma-separated for mulmiltple value):</label><br>
+    <input type="text" id="countries" name="countries"><br>
+
+    <label for="released">Released:</label><br>
+    <input type="date" id="released" name="released"><br>
+
+    <label for="directors">Directors (comma-separated for mulmiltple value):</label><br>
+    <input type="text" id="directors" name="directors"><br>
+
+    <label for="rated">Rated:</label><br>
+    <select id="rated" name="rated">
+      <option value="G">G</option>
+      <option value="PG">PG</option>
+      <option value="PG-13">PG-13</option>
+      <option value="R">R</option>
+      <option value="NC-17">NC-17</option>
+    </select><br>
+
+    <label for="awards_wins">Awards Wins:</label><br>
+    <input type="number" id="awards_wins" name="awards_wins"><br>
+
+    <label for="awards_nominations">Awards Nominations:</label><br>
+    <input type="number" id="awards_nominations" name="awards_nominations"><br>
+
+    <label for="awards_text">Awards Text:</label><br>
+    <input type="text" id="awards_text" name="awards_text"><br>
+
+    <label for="year">Year:</label><br>
+    <input type="number" id="year" name="year"><br>
+
+    <label for="imdb_rating">IMDB Rating:</label><br>
+    <input type="number" id="imdb_rating" name="imdb_rating" step="0.1"><br>
+
+    <label for="imdb_votes">IMDB Votes:</label><br>
+    <input type="number" id="imdb_votes" name="imdb_votes"><br>
+
+    <label for="imdb_id">IMDB ID:</label><br>
+    <input type="text" id="imdb_id" name="imdb_id"><br>
+
+    <label for="type">Type:</label><br>
+    <input type="text" id="type" name="type"><br>
+
+    <label for="tomatoes_viewer_rating">Tomatoes Viewer Rating:</label><br>
+    <input type="number" id="tomatoes_viewer_rating" name="tomatoes_viewer_rating" step="0.1"><br>
+
+    <label for="tomatoes_numReviews">Tomatoes Number of Reviews:</label><br>
+    <input type="number" id="tomatoes_numReviews" name="tomatoes_numReviews"><br>
+
+    <label for="tomatoes_meter">Tomatoes Meter:</label><br>
+    <input type="number" id="tomatoes_meter" name="tomatoes_meter"><br>
+
+    <input type="submit" value="Submit">
+  </form>
+</body>
+</html>
