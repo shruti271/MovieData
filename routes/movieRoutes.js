@@ -17,7 +17,7 @@ const validateToken = require("../middleware/validateTokenHandler");
 // router.use(validateToken);
 router.route("/AddMovie").get(addMovieUI)
 router.route("/").get(getMoviesByPagination).post(createMovie);
-router.route("/:id").get(validateToken,getMovie).put(validateToken,updateMovie).delete(validateToken,deleteMovie);
+router.route("/:id").get(getMovie).put(validateToken,updateMovie).delete(validateToken,deleteMovie);
 
 
 module.exports = router;
