@@ -16,9 +16,13 @@ const registerUser = asyncHandler(async (req, res) => {
   const { username, email, password } = req.body;
   console.log(username,email,password,req.body)
 
-  if (!username || !email || !password) {
+  if (!username || !email || !password ) {
     res.status(400);
     throw new Error("All fields are mandatory!");
+  }
+  if (password.length<5) {
+    res.status(400);
+    throw new Error("password must be at least 5 characters long");
   }
   const userAvailable = await User.findOne({ email });
   if (userAvailable) {

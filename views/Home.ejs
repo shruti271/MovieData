@@ -1,20 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <h1>All Movies</h1>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Pagination Example</title>
+</head>
+
+<body>
+    <!-- <%= (item)? item : "no data" %> -->
+    <!-- Data Display -->
+    <div id="dataContainer"></div>
     <table>
-      <tr>
-        <% data.forEach(function(item) { %>
-        <td><%= item.title %></td>
-        <td><%= item.plot %></td>
-        <td><%= item.genres.join(", ")  %></td>
-        <% }); %>
-      </tr>
+        <tr>
+            <th>plot</th>
+            <th>genre</th>
+            <th>poster</th>
+            <th>year</th>
+            <th>type</th>
+        </tr>
     </table>
-  </body>
+    <!-- Pagination Buttons -->
+    <button id="prevButton">Previous</button>
+    <button id="nextButton">Next</button>
+
+    <script>
+        // Variables to keep track of the current page number
+        let currentPage = 1;
+        const pageSize = 3; // Number of items per page
+        // const fetch = require('node-fetch');
+        // Base API URL (Replace with your API URL)
+        const apiUrl = 'http://localhost:5001/api/Movies';
+
+        console.log("comin");
+        // Function to fetch data for the current page
+        async function fetchDataForPage(page) {
+            console.log("comin"+page);
+            try {
+                // Fetch data from the API using the current page number
+                const response = await fetch(`${apiUrl}?page=${page}&perpage=${pageSize}`);
+                console.log("comin-");
+                // Check if the response is okay
+                if (!response.ok) {
+                    throw new Error('Failed to fetch data from API');
+                }
+
+                // Parse the JSON data
+                const data = await response.json();
+
+                // Display the data in the dataContainer
+                displayData(data);
+            } catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        }
+
+        // Function to display data in the dataContainer
+        function displayData(data) {
+            const dataContainer = document.getElementById('dataContainer');
+            
+            // Clear the data container
+            dataContainer.innerHTML = '';
+            console.log(data.data);
+            // Display data (you can customize this to suit your needs)
+            data.data.forEach(item => {
+                const itemElement = document.createElement('div');
+                itemElement.textContent = JSON.stringify(item);
+
+                // var dtable=
+                //add html here
+                dataContainer.appendChild(itemElement);
+            });
+        }
+
+        // Function to handle going to the previous page
+        function goToPreviousPage() {
+            if (currentPage > 1) {
+                currentPage--;
+                fetchDataForPage(currentPage);
+            }
+        }
+
+        // Function to handle going to the next page
+        function goToNextPage() {
+            currentPage++;
+            fetchDataForPage(currentPage);
+        }
+
+        // Attach event listeners to the buttons
+        document.getElementById('prevButton').addEventListener('click', goToPreviousPage);
+        document.getElementById('nextButton').addEventListener('click', goToNextPage);
+
+        // Initial fetch for the first page
+        fetchDataForPage(currentPage);
+    </script>
+</body>
+
 </html>

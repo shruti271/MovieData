@@ -1,19 +1,97 @@
-<!doctype html>
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f89654;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+            width: 350px;
+            padding: 40px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-container h2 {
+            margin-bottom: 30px;
+            text-align: center;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .login-container form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .login-container label {
+            margin-bottom: 8px;
+            color: #666;
+            font-weight: bold;
+        }
+
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            transition: border-color 0.3s ease;
+        }
+
+        .login-container input[type="text"]:focus,
+        .login-container input[type="password"]:focus {
+            border-color: #007bff;
+        }
+
+        .login-container button[type="submit"] {
+            padding: 14px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .login-container button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .error-message {
+            margin-top: 20px;
+            text-align: center;
+            color: #f00;
+        }
+    </style>
 </head>
-
 <body>
-
-  <h5><%= (errorMsg) ? errorMsg : "Please login below" %></h5>
-<%= errors %>
-  <form method="post" action="/api/users/login">
-    <label>email</label> <input name="email" type="text">
-    <label>Password</label> <input name="password" type="password">
-    <br><br><button type="submit">Login</button>
-  </form>
+    <div class="login-container">
+        <h2>Login</h2>
+        <% if (errorMsg) { %>
+            <p class="error-message"><%= errorMsg %></p>
+        <% } %>
+        <form method="post" action="/api/users/login">
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email" required>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit">Login</button>
+        </form>
+    </div>
 </body>
-
 </html>

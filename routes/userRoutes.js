@@ -10,11 +10,8 @@ const validateToken = require("../middleware/validateTokenHandler");
 
 const router = express.Router();
 
-router.get("/register", registerUI);
-router.post("/register", registerUser);
-
-router.get("/login", loginUI);
-router.post("/login", loginUser);
+router.route("/register").post(registerUser).get(registerUI);
+router.route("/login").post(loginUser).get(loginUI);
 
 router.get("/current", validateToken, currentUser);
 

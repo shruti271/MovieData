@@ -11,6 +11,12 @@ const getAllMovies = asyncHandler(async (req, res) => {
   res.status(200).json(Movies);
 });
 
+//movie UI controller
+const getMovieUI = asyncHandler(async (req, res) => {
+  res.render("Home", {
+    errorMsg: "",
+  });
+});
 //@desc Get all Movies
 //@route GET /api/Movies
 //@access private
@@ -44,47 +50,12 @@ const addMovieUI = asyncHandler(async (req, res) => {
 const createMovie = asyncHandler(async (req, res) => {
   console.log("The request body is :", req.body);
   const data = req.body;
-
-  // if (!name || !email || !phone) {
-  //   res.status(400);
-  //   throw new Error("All fields are mandatory !");
-  // }
+  
   const addedMovie = await Movie.create({
-    data,
-    // user_id: req.user.id,
+    data,    
   });
 
   res.status(201).json(addedMovie);
-
-  const verifyToken = asyncHandler((req, res, next) => {
-    // Check if token is present in request headers
-    const token = req.headers.authorization;
-
-    if (!token) {
-      return res.status(403).json({ message: "Access denied. Token missing." });
-    }
-
-    // Extract token from the Authorization header
-    const accessToken = token.split(" ")[1]; // Assuming token format is "Bearer <token>"
-
-    // Verify the token
-    jwt.verify(
-      accessToken,
-      process.env.ACCESS_TOKEN_SECRET,
-      async (err, decoded) => {
-        if (err) {
-          console.log("Error verifying token:", err);
-          return res
-            .status(403)
-            .json({ message: "Access denied. Invalid token." });
-        } else {
-          // If token is valid, attach decoded token to request object
-          req.decoded = decoded;
-          next(); // Proceed to the next middleware or route handler
-        }
-      }
-    );
-  });
 });
 
 
@@ -119,11 +90,6 @@ const updateMovie = asyncHandler(async (req, res) => {
     throw new Error("Movie not found");
   }
 
-  // if (oldMovie.user_id.toString() !== req.user.id) {
-  //   res.status(403);
-  //   throw new Error("User don't have permission to update other user Movies");
-  // }
-
   const updatedMovie = await Movie.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
   });
@@ -156,4 +122,5 @@ module.exports = {
   updateMovie,
   deleteMovie,
   addMovieUI,  
+  getMovieUI
 };
