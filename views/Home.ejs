@@ -12,15 +12,7 @@
     <!-- <%= (item)? item : "no data" %> -->
     <!-- Data Display -->
     <div id="dataContainer"></div>
-    <table>
-        <tr>
-            <th>plot</th>
-            <th>genre</th>
-            <th>poster</th>
-            <th>year</th>
-            <th>type</th>
-        </tr>
-    </table>
+    
     <!-- Pagination Buttons -->
     <button id="prevButton">Previous</button>
     <button id="nextButton">Next</button>
@@ -66,7 +58,7 @@
             // Display data (you can customize this to suit your needs)
             data.data.forEach(item => {
                 const itemElement = document.createElement('div');
-                itemElement.textContent = JSON.stringify(item);
+                // itemElement.textContent = JSON.stringify(item);
 
                 // var dtable=
                 //add html here

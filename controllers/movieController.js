@@ -106,10 +106,6 @@ const deleteMovie = asyncHandler(async (req, res) => {
     res.status(404);
     throw new Error("Movie not found");
   }
-  // if (MovieData.user_id.toString() !== req.user.id) {
-  //   res.status(403);
-  //   throw new Error("User don't have permission to update other user Movies");
-  // }
   await Movie.deleteOne({ _id: req.params.id });
   res.status(200).json({status:400,data:MovieData,message:"successfully deleted"});
 });
